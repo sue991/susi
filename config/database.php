@@ -48,8 +48,8 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
@@ -72,6 +72,12 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+
+        'sqlite' => [
+            'foreign_key_constraints' => true,
+        ],
+
+
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
