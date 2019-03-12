@@ -26,7 +26,7 @@
         <div class="container">
   <div class="row">
         <div class="span3 side-by-side clearfix offset4">
-            <form method="get" action="/" >
+            <form method="post" action="{{route('admin.store')}}" >
                 <input name="q" class="form-control" type="text"  placeholder="회원 ID">
                 <input name="loc" class="form-control" type="text"  placeholder="E-mail">
                 <input name="type" class="form-control" type="text"  placeholder="분류">
