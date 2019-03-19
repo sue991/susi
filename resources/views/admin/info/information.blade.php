@@ -8,6 +8,13 @@
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+ 
+
+
+
 </head>
 <body>
 
@@ -27,10 +34,33 @@
         <div class="container">
   <div class="row">
         <div class="span3 side-by-side clearfix offset4">
-            <form method="get" action="/" >
+            <form method="get" action="/admin.show" >
                 <input name="q" class="form-control" type="text"  placeholder="회원 ID">
+
+
+                <div id="input-form" type = "submit" href="/js/search.js">
+            이름 : <input type="text" id="keyword" />
+                </div>
+                
                 <input name="loc" class="form-control" type="text"  placeholder="E-mail">
-                <input name="type" class="form-control" type="text"  placeholder="분류">
+
+<form>
+
+                  <a class="btn btn-default btn-xs" href="#">
+                    <span class="" name = "search" value = "mentor" type='search'></span> mentor
+                  </a>
+                  <a class="btn btn-default btn-xs" href="#">
+                    <span class="" name = "search" type = "student"></span> student
+                  </a>
+                  <a class="btn btn-default btn-xs" href="javascript:;">
+                    <span class="" name = "search" type = "parent" > </span> parent
+                  </a>
+
+
+</form>
+
+
+
                 <button type="submit" class="btn btn-primary"> <i class="glyphicon glyphicon-search"></i></button>
             </form>
         </div>
@@ -80,7 +110,7 @@
             </a>
           </div> -->
         </div><br><br>
-        <a href="{{route('admin.create')}}" class="btn btn-primary">등록</a>
+        <a href="{{url('admin/add/choose')}}" class="btn btn-primary">등록</a>
         <div class="widget-content">
           <table class="table table-striped table-bordered">
             <thead>
@@ -97,8 +127,9 @@
                 </th><th class="td-actions" id="table_action"> 세부사항</th>
               </tr>
             </thead>
+
             <tbody>
-              <tr>
+              <!-- <tr>
                 <td>000001</td>
                 <td>mentor1@susirecipe.com</td>
                 <td>이수아</td>
@@ -119,7 +150,50 @@
                     <span class="glyphicon glyphicon-search"></span> View
                   </a>
                 </td>
-              </tr>
+              </tr> -->
+
+            @foreach ($users as $user)
+             <tr> 
+              <td>{{ $user -> id }} </td>
+              <td>{{ $user-> user_id}} </td>
+              <td>{{ $user -> name}} </td>
+              <td>{{ $user -> gender}} </td>
+              <td>{{ $user -> phone_number}} </td>
+              <td>{{ $user -> Email}} </td>
+              <td>{{ $user -> register_date}} </td>
+              <td>{{ $user -> category}} </td>
+              <td>{{ $user -> situation}} </td>
+
+              <td class="td-actions">
+                  <a class="btn btn-default btn-xs" href={{ route('admin.edit', ['id' => ($user -> id) ]) }} >
+                    <span class="glyphicon glyphicon-pencil" type='submit'></span> Edit
+                  </a>
+                  
+
+                  <a class="btn btn-default btn-xs" onclick="button_event();" >
+                    <span class="glyphicon glyphicon-remove" type = 'submit'></span> Remove
+                    <script type="text/javascript">    
+                      function button_event(){
+                        if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+                          location.href = '{{ route('admin.delete', ['id' => ($user -> id) ]) }}'
+                          return true;
+                        } else{   //취소
+                          return false;
+                        }
+                      }
+
+                    </script>
+                  </a>
+
+
+                  <a class="btn btn-default btn-xs" href="javascript:;">
+                    <span class="glyphicon glyphicon-search"></span> View
+                  </a>
+                </td>
+             </tr>
+
+            @endforeach
+
             </tbody>
           </table>
         </div> <!-- /widget-content -->

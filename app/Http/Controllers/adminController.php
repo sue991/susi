@@ -9,14 +9,28 @@ class adminController extends Controller
 {
  public function index()
     {
-        $titles = DB ::table('test') -> get();
-        dump($titles); // collection 정보를 볼 수 있음
-        return view('admin.info.information',['titles' =>$titles]);
+       
+        $users = DB::table('user_info') -> get();
+        dump($users);
+       
+        return view('admin.info.information',['users' => $users]);
+
     }
 
     public function create()
     {
-        return view('admin.match.matching');
+        
+        $cnt = DB::table('user_info')->count();
+        
+        DB::table('user_info')->insert(
+            ['id' => (int)$cnt + 1  ,'gender' => $_GET['gender'], 'phone_number' => $_GET['mobile'], 'email' => $_GET['email'],'register_date' => $_GET['birth'] , 'name' => $_GET['name']]
+        );
+
+        $users = DB::table('user_info') -> get();
+        dump($users);
+
+        return view('admin.info.information',['users' => $users]);
+
     }
 
     public function store(Request $request)
@@ -33,7 +47,25 @@ class adminController extends Controller
 
     public function edit($id)
     {
-        return view('mento.get.edit',['id' => $id]);
+        $info = DB::table('user_info') 
+        -> where('id',$id)
+        ->get();
+        
+        // $users = DB ::table('user_info') -> get();
+
+         dump($info);
+         return view('admin.edit',['info' => $info]);
+    }
+
+    public function delete($id){
+        $info = DB::table('user_info') 
+        -> where('id',$id)
+        ->delete();
+
+        $users = DB::table('user_info') -> get();
+
+
+        return view('admin.info.information',['users' => $users]);
     }
 
     public function update(Request $request, $id)
@@ -41,9 +73,24 @@ class adminController extends Controller
         return view('mento.put.update',['id'=> $id]);
     }
 
-    public function destroy($id)
-    {
-        return view('mento.delete.destroy',['id' => $id]);
+    public function updates(){
+        DB::table('user_info')
+        -> where('id',$_GET['id'])
+        -> update(
+            ['user_id' => $_GET['user_id'] , 'name' => $_GET['name'], 'gender' => $_GET['gender'], 'phone_number' => $_GET['phone_number'], 'email' => $_GET['Email'], 'register_date' => $_GET['resigter_date'], 'category' => $_GET['category'], 'situation' => $_GET['situation']]
+        );
+
+        $users = DB::table('user_info') -> get();
+        dump($users);
+
+        return view('admin.info.information',['users' => $users]);
     }
 
-}
+
+    public function destroy($id)
+    {
+        DB::table('users')->where('id', '=', $id)->delete();
+        return view('admin.info.information',['id' => $id]);
+    }
+
+};
