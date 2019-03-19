@@ -2,19 +2,9 @@
 <html>
 <head>
 	<title>information</title>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-
- 
-
-
-
 </head>
 <body>
 
@@ -170,19 +160,8 @@
                   </a>
                   
 
-                  <a class="btn btn-default btn-xs" onclick="button_event();" >
+                  <a class="btn btn-default btn-xs" data-method="DELETE" data-confirm="정말로 삭제하시겠습니까?" data-token="{{ csrf_token() }}" href="{{route('admin.destroy', $user->id)}}">
                     <span class="glyphicon glyphicon-remove" type = 'submit'></span> Remove
-                    <script type="text/javascript">    
-                      function button_event(){
-                        if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-                          location.href = '{{ route('admin.delete', ['id' => ($user -> id) ]) }}'
-                          return true;
-                        } else{   //취소
-                          return false;
-                        }
-                      }
-
-                    </script>
                   </a>
 
 
@@ -215,6 +194,6 @@
   </div>
 </div>
 
-
+<script src="/js/laravel.js"></script>
 </body>
 </html>

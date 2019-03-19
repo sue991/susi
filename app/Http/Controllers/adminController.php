@@ -49,48 +49,57 @@ class adminController extends Controller
     {
         $info = DB::table('user_info') 
         -> where('id',$id)
-        ->get();
+        ->first();
         
         // $users = DB ::table('user_info') -> get();
 
-         dump($info);
+        //  dump($info);
          return view('admin.edit',['info' => $info]);
     }
 
-    public function delete($id){
-        $info = DB::table('user_info') 
-        -> where('id',$id)
-        ->delete();
+    // public function delete($id){
+    //     $info = DB::table('user_info') 
+    //     -> where('id',$id)
+    //     ->delete();
 
-        $users = DB::table('user_info') -> get();
+    //     $users = DB::table('user_info') -> get();
 
 
-        return view('admin.info.information',['users' => $users]);
-    }
+    //     return view('admin.info.information',['users' => $users]);
+    // }
 
     public function update(Request $request, $id)
     {   
-        return view('mento.put.update',['id'=> $id]);
+        // DB::table('user_info')
+        // -> where('id', $id)
+        // -> update(
+        //     ['user_id' => $request->input('user_id') , 'name' => $request->input('name'), 'gender' => $request->input('gender'), 'phone_number' => $_GET['phone_number'], 'email' => $_GET['Email'], 'register_date' => $_GET['resigter_date'], 'category' => $_GET['category'], 'situation' => $_GET['situation']]
+        // );
+
+        // $users = DB::table('user_info') -> get();
+        // dump($users);
+
+        // return view('mento.put.update',['id'=> $id]);
+
+        return redirect(route('admin.index'));
     }
 
-    public function updates(){
-        DB::table('user_info')
-        -> where('id',$_GET['id'])
-        -> update(
-            ['user_id' => $_GET['user_id'] , 'name' => $_GET['name'], 'gender' => $_GET['gender'], 'phone_number' => $_GET['phone_number'], 'email' => $_GET['Email'], 'register_date' => $_GET['resigter_date'], 'category' => $_GET['category'], 'situation' => $_GET['situation']]
-        );
+    // public function updates(){
+        
 
-        $users = DB::table('user_info') -> get();
-        dump($users);
-
-        return view('admin.info.information',['users' => $users]);
-    }
+    //     return view('admin.info.information',['users' => $users]);
+    // }
 
 
     public function destroy($id)
     {
-        DB::table('users')->where('id', '=', $id)->delete();
-        return view('admin.info.information',['id' => $id]);
+        // $info = DB::table('user_info') 
+        // -> where('id', $id)
+        // ->delete();
+
+        return redirect(route('admin.index'));
+
+        // return view('admin.info.information',['id' => $id]);
     }
 
 };

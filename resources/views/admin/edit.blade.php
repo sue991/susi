@@ -31,8 +31,9 @@
             <tbody>
 
 			  <tr>
-			  <form action="{{route('admin.updates')}}" method="get">
-			  @foreach ($info as $info)
+			  <form action="{{route('admin.update', $info->id)}}" method="POST">
+				@csrf
+				@method('PUT')
         <td> <input type="text" id="user_id" value = "<?= ($info -> id)  ?>" name="id" readonly/> </td>
 				<td> <input type="text" id="user_id" value = "<?= ($info -> user_id)  ?>" name="user_id" /> </td>
 				<td> <input type="text" id="name" value = "<?= ($info -> name)  ?>" name="name" /> </td>
@@ -63,8 +64,6 @@
           if("<?= ($info -> situation)  ?>" == li[1].value) li[1].checked = true;
           if("<?= ($info -> situation)  ?>" == li[2].value) li[2].checked = true; 
         </script>
-
-				@endforeach
 
         <button class="glyphicon glyphicon-pencil" type='submit'></span> 수정완료
 	
