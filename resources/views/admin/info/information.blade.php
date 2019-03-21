@@ -24,30 +24,30 @@
         <div class="container">
   <div class="row">
         <div class="span3 side-by-side clearfix offset4">
-            <form method="get" action="/admin.show" >
-                <input name="q" class="form-control" type="text"  placeholder="회원 ID">
+            <form method="post" action="{{route('admin.show', 0)}}" >
+            @csrf
+				    @method('GET')
+                <input name="user_id" class="form-control" type="text"  placeholder="회원 ID">
 
 
-                <div id="input-form" type = "submit" href="/js/search.js">
-            이름 : <input type="text" id="keyword" />
-                </div>
+                <input name="name" class="form-control" type="text"  placeholder="이름">
                 
-                <input name="loc" class="form-control" type="text"  placeholder="E-mail">
-
-<form>
-
-                  <a class="btn btn-default btn-xs" href="#">
-                    <span class="" name = "search" value = "mentor" type='search'></span> mentor
-                  </a>
-                  <a class="btn btn-default btn-xs" href="#">
-                    <span class="" name = "search" type = "student"></span> student
-                  </a>
-                  <a class="btn btn-default btn-xs" href="javascript:;">
-                    <span class="" name = "search" type = "parent" > </span> parent
-                  </a>
+                
+                <input name="email" class="form-control" type="text"  placeholder="E-mail">
 
 
-</form>
+
+                 
+                      <input class="form-control" name = "category" type = "radio" value = "mentor" ></span> mentor
+                 
+                      <input class="form-control" name = "category" type = "radio" value = "student"></span> student
+          
+                      <input class="form-control" name = "category" type = "radio" value = "parent" > </span> parent
+                 
+
+                  <br>
+
+
 
 
 
@@ -57,7 +57,7 @@
     </div>
 </div>
         <div class="row">
- <!--          <div class="span2 side-by-side clearfix">
+          <!-- <div class="span2 side-by-side clearfix">
             <select tabindex="-1" id="Show" class="chosen-select" data-placeholder="Show" style="display: none;">
               <option value=""></option>
               <option>5</option>
