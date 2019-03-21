@@ -37,7 +37,16 @@
         <td> <input type="text" id="id" value = "<?= ($info -> id)  ?>" name="id" readonly/> </td>
 				<td> <input type="text" id="user_id" value = "<?= ($info -> user_id)  ?>" name="user_id" /> </td>
 				<td> <input type="text" id="name" value = "<?= ($info -> name)  ?>" name="name" /> </td>
-				<td> <input type="text" id="gender" value = "<?= ($info -> gender)  ?>"name="gender" /> </td>
+				<td> 
+					<input type = "radio" name = "gender" value = "F">F
+					<input type = "radio" name = "gender" value = "M">M  
+					</td>
+					<script> 
+						var li =  document.getElementsByName("gender");
+						if("<?= ($info -> gender)  ?>" == li[0].value) li[0].checked = true;
+						if("<?= ($info -> gender)  ?>" == li[1].value) li[1].checked = true;
+      	  </script>
+
 				<td> <input type="text" id="phone_number" value = "<?= $info -> phone_number  ?>"name="phone_number" /> </td>
 				<td> <input type="text" id="Email"  value = "<?= ($info -> Email)  ?>"name="Email" /> </td>
 				<td> <input type="text" id="resigter_date" value = "<?= ($info -> register_date)  ?>" name="resigter_date" /> </td>
